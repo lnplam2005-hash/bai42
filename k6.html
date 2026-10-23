@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>K6: Xử Lý Sự Kiện Bàn Phím</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .box { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        input[type="text"] { padding: 10px; width: 100%; box-sizing: border-box; font-size: 16px; margin-top: 10px; }
+        #keyInfo { margin-top: 15px; font-weight: bold; color: #2c3e50; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <a href="42.html" class="back-link">&larr; Quay lại trang chủ</a>
+    <h2>K6: Xử Lý Sự Kiện Bàn Phím</h2>
+
+    <div class="box">
+        <label>Nhấn phím bất kỳ vào ô bên dưới:</label>
+        <input type="text" id="keyInput" placeholder="Gõ gì đó vào đây...">
+        <p id="keyInfo">Bạn chưa nhấn phím nào.</p>
+    </div>
+
+    <script>
+        const input = document.getElementById("keyInput");
+        const keyInfo = document.getElementById("keyInfo");
+
+        input.addEventListener("keydown", function(event) {
+            keyInfo.innerHTML = `Bạn vừa nhấn phím: <span style="color: #e74c3c;">${event.key}</span> (Mã KeyCode: ${event.keyCode || event.which})`;
+        });
+    </script>
+</body>
+</html>

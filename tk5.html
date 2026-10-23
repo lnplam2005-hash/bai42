@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>TK5: Accordion đơn giản</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 18px; width: 100%; text-align: left; border: none; outline: none; transition: 0.4s; font-size: 16px; font-weight: bold; margin-bottom: 5px; border-radius: 4px; }
+        .active, .accordion:hover { background-color: #ccc; }
+        .panel { padding: 0 18px; background-color: white; display: none; overflow: hidden; border-left: 3px solid #3498db; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <a href="42.html" class="back-link">&larr; Quay lại trang chủ</a>
+    <h2>TK5: Accordion đơn giản</h2>
+
+    <button class="accordion">Phần 1: Giới thiệu</button>
+    <div class="panel"><p>Nội dung chi tiết của phần 1 được mở ra/thu gọn khi nhấn vào tiêu đề.</p></div>
+
+    <button class="accordion">Phần 2: Hướng dẫn sử dụng</button>
+    <div class="panel"><p>Nội dung chi tiết của phần 2 mô tả cách thức thao tác cơ bản.</p></div>
+
+    <button class="accordion">Phần 3: Liên hệ hỗ trợ</button>
+    <div class="panel"><p>Thông tin liên hệ chi tiết được đặt tại phần 3 này.</p></div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                panel.style.display = (panel.style.display === "block") ? "none" : "block";
+            });
+        }
+    </script>
+</body>
+</html>

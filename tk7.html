@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>TK7: Tạo chuỗi ngẫu nhiên</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .box { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        input { padding: 8px; width: 80px; margin-right: 10px; }
+        button { padding: 8px 15px; background: #3498db; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #2980b9; }
+        #stringResult { margin-top: 15px; font-weight: bold; font-size: 18px; color: #2c3e50; word-break: break-all; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <a href="42.html" class="back-link">&larr; Quay lại trang chủ</a>
+    <h2>TK7: Tạo chuỗi ngẫu nhiên</h2>
+
+    <div class="box">
+        <label>Độ dài chuỗi:</label>
+        <input type="number" id="lengthStr" value="10" min="1" max="50">
+        <button onclick="taoChuoi()">Tạo chuỗi</button>
+        <div id="stringResult"></div>
+    </div>
+
+    <script>
+        function taoChuoi() {
+            let length = parseInt(document.getElementById("lengthStr").value);
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "";
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("stringResult").innerText = result;
+        }
+    </script>
+</body>
+</html>

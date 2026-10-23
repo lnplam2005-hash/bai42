@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>TK8: Chuyển đổi màu Hex sang RGB</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .box { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        input { padding: 8px; width: 120px; margin-right: 10px; }
+        button { padding: 8px 15px; background: #3498db; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #2980b9; }
+        #rgbResult { margin-top: 15px; font-weight: bold; }
+        #colorBox { width: 100px; height: 50px; margin-top: 15px; border: 1px solid #ccc; display: none; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <a href="42.html" class="back-link">&larr; Quay lại trang chủ</a>
+    <h2>TK8: Chuyển đổi màu Hex sang RGB</h2>
+
+    <div class="box">
+        <label>Mã Hex (VD: #3498db):</label><br><br>
+        <input type="text" id="hexInput" value="#3498db">
+        <button onclick="hexToRgb()">Chuyển đổi</button>
+        <p id="rgbResult"></p>
+        <div id="colorBox"></div>
+    </div>
+
+    <script>
+        function hexToRgb() {
+            let hex = document.getElementById("hexInput").value.trim();
+            let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+
+            let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            if (result) {
+                let r = parseInt(result[1], 16);
+                let g = parseInt(result[2], 16);
+                let b = parseInt(result[3], 16);
+                let rgbStr = `rgb(${r}, ${g}, ${b})`;
+                document.getElementById("rgbResult").innerText = "Kết quả: " + rgbStr;
+                
+                let box = document.getElementById("colorBox");
+                box.style.display = "block";
+                box.style.backgroundColor = rgbStr;
+            } else {
+                document.getElementById("rgbResult").innerText = "Mã Hex không hợp lệ!";
+                document.getElementById("colorBox").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

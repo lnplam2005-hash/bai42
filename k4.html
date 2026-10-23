@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>K4: Phân Trang Danh Sách</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .box { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        ul { padding-left: 20px; }
+        li { padding: 5px 0; font-size: 16px; }
+        .pagination { margin-top: 15px; }
+        .pagination button { padding: 5px 10px; margin-right: 5px; background: #3498db; color: white; border: none; cursor: pointer; border-radius: 3px; }
+        .pagination button.active { background: #2c3e50; font-weight: bold; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <a href="42.html" class="back-link">&larr; Quay lại trang chủ</a>
+    <h2>K4: Phân Trang Danh Sách</h2>
+
+    <div class="box">
+        <ul id="itemList"></ul>
+        <div class="pagination" id="paginationControls"></div>
+    </div>
+
+    <script>
+        const items = Array.from({ length: 25 }, (_, i) => `Mục dữ liệu số ${i + 1}`);
+        const itemsPerPage = 5;
+        let currentPage = 1;
+
+        function displayList(page) {
+            let start = (page - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+            let paginatedItems = items.slice(start, end);
+
+            let listHTML = "";
+            paginatedItems.forEach(item => {
+                listHTML += `<li>${item}</li>`;
+            });
+            document.getElementById("itemList").innerHTML = listHTML;
+            setupPagination();
+        }
+
+        function setupPagination() {
+            let pageCount = Math.ceil(items.length / itemsPerPage);
+            let paginationHTML = "";
+            for (let i = 1; i <= pageCount; i++) {
+                let activeClass = (i === currentPage) ? "active" : "";
+                paginationHTML += `<button class="${activeClass}" onclick="changePage(${i})">${i}</button>`;
+            }
+            document.getElementById("paginationControls").innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            displayList(page);
+        }
+
+        displayList(1);
+    </script>
+</body>
+</html>
